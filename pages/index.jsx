@@ -21,7 +21,33 @@ export default function Home() {
       </Head>
       <>
         <h1>Wisconin Internet</h1>
-        <Formik
+        <form
+          action="/success"
+          method="POST"
+          name="Sign Up"
+          netlify-honeypot="bot-field"
+          data-netlify-recaptcha="true"
+          data-netlify="true"
+        >
+          <div
+            style={{
+              display: "none",
+            }}
+          >
+            <input name="bot-field" />
+          </div>
+          <div>
+            <label htmlFor="name">
+              Name
+              <input name="name" id="name" />
+            </label>
+          </div>
+          <div data-netlify-recaptcha="true"></div>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+        {/* <Formik
           initialValues={{
             firstName: "",
             lastName: "",
@@ -173,7 +199,7 @@ export default function Home() {
               <button type="submit">Submit</button>
             </div>
           </Form>
-        </Formik>
+        </Formik> */}
       </>
     </Layout>
   );
