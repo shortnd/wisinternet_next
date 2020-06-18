@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import Head from "next/head";
 
 import { useFormik, Formik, Field, Form, ErrorMessage } from "formik";
@@ -8,6 +9,9 @@ import FormField from "../components/FormField";
 
 export default function Home() {
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+  const pageSubmit = () => {
+    document.querySelector("form").submit();
+  };
 
   return (
     <Layout>
@@ -54,9 +58,11 @@ export default function Home() {
             currentSpeed: Yup.number().notRequired(),
             maintainComputers: Yup.boolean().notRequired(),
           })}
-          validateOnMount={true}
+          validateOnMount="true"
+          onSubmit={pageSubmit}
         >
           <Form
+            action="/success"
             method="POST"
             name="Sign Up"
             netlify-honeypot="bot-field"
